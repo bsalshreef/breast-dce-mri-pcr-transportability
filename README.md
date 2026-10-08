@@ -1,183 +1,94 @@
 # Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response
 
-
-
 ## Overview
-
-
 
 This repository contains the analysis code supporting the study:
 
-
-
 **Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response**
-
-
 
 The study evaluates whether DCE-MRI radiomic features provide incremental predictive value beyond routinely available clinical variables for predicting pathologic complete response (pCR), and examines model transportability and calibration across independent breast cancer cohorts.
 
-
-
 The analysis uses publicly available, deidentified data derived from the BreastDCEDL resource and its source cohorts, including I-SPY2, I-SPY1, and the Duke Breast Cancer MRI cohort.
-
-
 
 ## Study cohorts
 
-
-
 The locked analysis includes:
 
-
-
 | Cohort | Role | N | pCR |
-
 |---|---|---:|---:|
-
 | I-SPY2 | Model development and internal validation | 982 | 316 (32.2%) |
-
 | I-SPY1 | External validation | 167 | 47 (28.1%) |
-
 | Duke | External clinical-model validation | 297 | 62 (20.9%) |
-
-
 
 M4 was intentionally not evaluated in the Duke cohort because the available Duke segmentation masks were not considered semantically compatible with the tumor masks used to derive the locked M4 radiomic features.
 
-
-
 ## Models
-
-
 
 Three prespecified model configurations were evaluated:
 
-
-
 - **M2 — Clinical model:** age, hormone receptor (HR) status, HER2 status, and log-transformed tumor volume.
-
 - **M3 — Radiomics model:** radiomic features selected within nested cross-validation using SelectKBest and L2-penalized logistic regression.
-
 - **M4 — Combined model:** all M2 clinical predictors plus selected radiomic features.
-
-
 
 Clinical predictors were retained in M4 while radiomic feature selection was performed within the training data.
 
-
-
 ## Validation framework
-
-
 
 Internal performance in I-SPY2 was estimated using locked five-fold stratified cross-validation.
 
-
-
 Hyperparameter and feature-selection decisions for M3 and M4 were performed within the training portion of each outer fold.
-
-
 
 The final M4 model used:
 
-
-
 - 4 clinical predictors
-
 - 20 selected radiomic predictors
-
 - L2-penalized logistic regression
-
 - final `C = 0.1`
-
-
 
 The final value of `C` followed the deterministic tie-breaking behavior implemented in the locked analysis pipeline.
 
-
-
 External validation in I-SPY1 used the frozen model without external refitting, feature reselection, preprocessing estimation, hyperparameter tuning, or recalibration.
-
-
 
 ## Primary results
 
-
-
 ### I-SPY2 internal validation
 
-
-
 | Model | AUROC | AUPRC | Brier score |
-
 |---|---:|---:|---:|
-
 | M2 | 0.698 | 0.524 | 0.194 |
-
 | M3 | 0.625 | 0.426 | 0.210 |
-
 | M4 | 0.707 | 0.526 | 0.193 |
-
-
 
 The incremental performance of M4 over M2 was small.
 
-
-
 ### I-SPY1 external validation
 
-
-
 | Model | AUROC | AUPRC | Brier score |
-
 |---|---:|---:|---:|
-
 | M2 | 0.773 | 0.572 | 0.167 |
-
 | M4 | 0.758 | 0.540 | 0.172 |
-
-
 
 ### Duke external validation
 
-
-
 The clinical M2 model achieved:
 
-
-
 - AUROC: **0.681**
-
 - AUPRC: **0.356**
-
 - Brier score: **0.181**
-
-
 
 ## Repository structure
 
-
-
-
 ```text
-
 code/
-
 ├── preprocessing/
-
 ├── radiomics/
-
 ├── modeling/
-
 ├── validation/
-
 └── figures/
 
-
-
 docs/
-
 requirements.txt
+```
 
 ## Radiomics
 
@@ -188,7 +99,6 @@ The default PyRadiomics extractor was used with original-image features only (`o
 A total of 107 radiomic features were extracted per acquisition, yielding 321 candidate radiomic features across the three acquisitions.
 
 Radiomic feature selection was performed within the training data to reduce information leakage. No formal claim of full IBSI compliance is made.
-
 
 ## Complete-case sensitivity analysis
 
@@ -245,7 +155,7 @@ See `docs/REPRODUCIBILITY.md` and `docs/ANALYSIS_WORKFLOW.md` for details.
 
 ## Privacy and repository policy
 
-Patient-level data and derived patient-level artifacts are intentionally excluded from the public repository.
+Patient-level data and derived patient-level artifacts are intentionally excluded from the repository.
 
 This includes clinical metadata, patient-level predictions, radiomics matrices, MRI data, segmentation masks, serialized model objects, and files containing patient identifiers.
 
@@ -255,7 +165,9 @@ The repository is intended to provide analysis code and reproducibility document
 
 Create or activate a Python environment and install the pinned dependencies from the repository root:
 
-    pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
 The audited repository-preparation environment used Python 3.11.9.
 
@@ -265,7 +177,9 @@ Run analysis scripts from the repository root so that relative file paths resolv
 
 For example:
 
-    python code/modeling/run_M2_lockedCV.py
+```bash
+python code/modeling/run_M2_lockedCV.py
+```
 
 The repository does not automatically download the source datasets. Obtain the required data from the official sources described in `docs/DATA_AVAILABILITY.md`.
 
@@ -273,22 +187,30 @@ The overall analysis sequence and known provenance limitations are documented in
 
 ## Citation
 
-Citation information for this code release will be finalized when the public repository and versioned release are created.
+Citation metadata for this software repository are provided in `CITATION.cff`.
 
 The associated manuscript is:
 
-Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response.
+**Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response**
+
+Repository citation information may be updated following creation of a versioned software release and archival DOI.
 
 ## License
 
-A code license has not yet been assigned.
+The analysis code in this repository is released under the MIT License. See `LICENSE`.
 
-The licenses and terms governing the source datasets are separate from the license that may later be selected for this repository.
+The MIT License applies to the code in this repository and does not grant rights to the underlying source datasets or other third-party materials.
+
+## Dataset licensing and use
+
+The source datasets analyzed in this project are not redistributed through this repository. They remain subject to the licenses, access conditions, citation requirements, and other terms established by their respective data providers.
+
+Users are responsible for obtaining the source datasets from their official repositories and for complying with all applicable dataset-specific terms and restrictions.
+
+Nothing in the MIT License for this repository should be interpreted as granting permission to redistribute, sublicense, or otherwise use third-party datasets beyond the rights granted by their respective providers.
 
 ## Disclaimer
 
 This repository is provided for research and reproducibility purposes.
 
 It is not intended for clinical diagnosis, treatment decisions, or direct clinical deployment.
-
-The repository does not redistribute patient-level study data, and users are responsible for complying with the licenses and terms of the original data sources.
