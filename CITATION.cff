@@ -2,6 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
 title: "Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response"
 type: software
+version: "1.0.0"
+date-released: "2026-10-08"
 authors:
   - family-names: "Alshreef"
     given-names: "Bandar Saad"
