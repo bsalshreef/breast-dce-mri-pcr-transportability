@@ -189,11 +189,14 @@ The overall analysis sequence and known provenance limitations are documented in
 
 Citation metadata for this software repository are provided in `CITATION.cff`.
 
+**Software release:** v1.0.0  
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.23246623
+
 The associated manuscript is:
 
 **Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response**
 
-Repository citation information may be updated following creation of a versioned software release and archival DOI.
+When using the software, please cite the archived v1.0.0 release using the DOI above.
 
 ## License
 
