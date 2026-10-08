@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+.env.*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Medical imaging and masks
+*.dcm
+*.nii
+*.nii.gz
+*.nrrd
+*.mha
+*.mhd
+*.raw
+
+# Patient-level / derived tabular data
+*.csv
+*.tsv
+*.xlsx
+*.xls
+
+# Serialized models
+*.joblib
+*.pkl
+*.pickle
+
+# Archives / large data
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Generated figures
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.pdf
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*~
+
+# Local project data directories
+data/
+raw_data/
+derived_data/
+outputs/
+results/
+models/
+
+# Local environment capture / internal audit artifacts
+GITHUB_ENVIRONMENT_FREEZE.txt
+GITHUB_STAGING_BASELINE_SHA256.txt
+ANALYSIS_AUDIT_TRAIL.md

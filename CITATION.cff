@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Cross-Cohort Transportability, Calibration, and Incremental Value of Breast DCE-MRI Radiomics for Predicting Pathologic Complete Response"
+type: software
+authors:
+  - family-names: "Alshreef"
+    given-names: "Bandar Saad"
+    orcid: "https://orcid.org/0009-0009-9284-4262"
+    affiliation: "Shaqra University"
+license: MIT
